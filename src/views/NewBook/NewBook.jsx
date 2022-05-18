@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export default function NewBook() {
   const handleSubmit = async (e) => {
@@ -21,6 +22,7 @@ export default function NewBook() {
         ></textarea>
         <button>Submit</button>
       </form>
+      <Link to="/books">Back to books</Link>
     </>
   );
 }
