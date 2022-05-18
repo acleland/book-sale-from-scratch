@@ -8,9 +8,12 @@ import Header from './components/Header';
 import BookDetails from './views/BookDetails/BookDetails';
 import NewBook from './views/NewBook/NewBook';
 
+import CssBaseline from '@mui/material/CssBaseline';
+
 export default function App() {
   return (
     <>
+      <CssBaseline />
       <UserProvider>
         <Router>
           <Switch>
@@ -39,6 +42,7 @@ export default function App() {
           </Switch>
         </Router>
       </UserProvider>
+      <CssBaseline />
     </>
   );
 }

@@ -2,6 +2,9 @@ import React from 'react';
 import { useState } from 'react';
 import styles from './Auth.css';
 
+import ReactDOM from 'react-dom';
+import Button from '@mui/material/Button';
+
 import { useUser } from '../../context/UserContext';
 import { useHistory, useLocation } from 'react-router-dom';
 
@@ -81,8 +84,15 @@ export default function Auth() {
             }}
           />
         </label>
-        <button>{isSignUp ? 'Sign up' : 'Sign in'}</button>
+        {/* <button>{isSignUp ? 'Sign up' : 'Sign in'}</button> */}
       </form>
+      <Button
+        onClick={handleSubmit}
+        variant="contained"
+        style={{ margin: '20px' }}
+      >
+        {isSignUp ? 'Sign up' : 'Sign in'}
+      </Button>
     </div>
   );
 }
