@@ -9,38 +9,41 @@ import BookDetails from './views/BookDetails/BookDetails';
 import NewBook from './views/NewBook/NewBook';
 
 import CssBaseline from '@mui/material/CssBaseline';
+import { BooksProvider } from './context/BooksContext';
 
 export default function App() {
   return (
     <>
       <CssBaseline />
       <UserProvider>
-        <Router>
-          <Switch>
-            <Route path="/login">
-              <Auth />
-            </Route>
+        <BooksProvider>
+          <Router>
+            <Switch>
+              <Route path="/login">
+                <Auth />
+              </Route>
 
-            <PrivateRoute path="/books/new">
-              <NewBook />
-            </PrivateRoute>
+              <PrivateRoute path="/books/new">
+                <NewBook />
+              </PrivateRoute>
 
-            <PrivateRoute path="/books/:id">
-              <Header />
-              <BookDetails />
-            </PrivateRoute>
+              <PrivateRoute path="/books/:id">
+                <Header />
+                <BookDetails />
+              </PrivateRoute>
 
-            <PrivateRoute path="/books">
-              <Header />
-              <BookList />
-            </PrivateRoute>
+              <PrivateRoute path="/books">
+                <Header />
+                <BookList />
+              </PrivateRoute>
 
-            <PrivateRoute path="/">
-              <Header />
-              <Redirect to="/books" />
-            </PrivateRoute>
-          </Switch>
-        </Router>
+              <PrivateRoute path="/">
+                <Header />
+                <Redirect to="/books" />
+              </PrivateRoute>
+            </Switch>
+          </Router>
+        </BooksProvider>
       </UserProvider>
       <CssBaseline />
     </>

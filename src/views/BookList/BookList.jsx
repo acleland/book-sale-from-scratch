@@ -1,20 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import { fetchBooks } from '../../services/fetch';
 import { Link } from 'react-router-dom';
+import { useBooks } from '../../hooks/books';
 
 export default function BookList() {
-  const [books, setBooks] = useState([]);
+  // const [books, setBooks] = useState([]);
 
-  //loading state
+  // //loading state
 
-  useEffect(() => {
-    const getBooks = async () => {
-      const data = await fetchBooks();
-      setBooks(data);
-      console.log(data);
-    };
-    getBooks();
-  }, []);
+  // useEffect(() => {
+  //   const getBooks = async () => {
+  //     const data = await fetchBooks();
+  //     setBooks(data);
+  //     console.log(data);
+  //   };
+  //   getBooks();
+  // }, []);
+
+  const { books } = useBooks();
 
   return (
     <div>
