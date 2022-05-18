@@ -3,6 +3,7 @@ import { fetchBooks } from '../../services/fetch';
 
 export default function BookList() {
   const [books, setBooks] = useState([]);
+
   //loading state
 
   useEffect(() => {
@@ -20,7 +21,9 @@ export default function BookList() {
       <ul>
         {books.map((book) => (
           <li key={book.id}>
-            <h3>{book.title}</h3>
+            <Link to={`/books/${book.id}`}>
+              <h3>{book.title}</h3>{' '}
+            </Link>
             <p>{book.author}</p>
           </li>
         ))}
