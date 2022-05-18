@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import styles from './Auth.css';
-import { signInUser, signUpUser } from '../../services/user';
+
 import { useUser } from '../../context/UserContext';
 import { useHistory, useLocation } from 'react-router-dom';
 
@@ -38,7 +38,7 @@ export default function Auth() {
 
   return (
     <div className={styles['auth-page']}>
-      <h1>Guestbook</h1>
+      <h1>Superlative Books</h1>
       <div className={styles['auth-menu']}>
         <span
           className={`${styles['auth-toggle']} ${
