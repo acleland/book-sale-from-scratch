@@ -1,6 +1,6 @@
 import React from 'react';
 import { createContext, useContext, useState } from 'react';
-import { getUser, signInUser, signUpUser } from '../services/user';
+import { getUser, signInUser, signUpUser, signOutUser } from '../services/user';
 
 export const UserContext = createContext();
 
@@ -24,7 +24,9 @@ export const UserProvider = ({ children }) => {
   };
 
   const logout = async () => {
-    setUser({ email: null });
+    const signOut = await signOutUser();
+
+    setUser(signOut);
   };
 
   return (

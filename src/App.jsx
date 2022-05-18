@@ -4,6 +4,7 @@ import PrivateRoute from './components/PrivateRoute';
 import { UserProvider } from './context/UserContext';
 import BookList from './views/BookList/BookList';
 import Auth from './views/Auth/Auth';
+import Header from './components/Header';
 
 export default function App() {
   return (
@@ -15,6 +16,7 @@ export default function App() {
           </Route>
           <Route path="/">
             <PrivateRoute>
+              <Header />
               <BookList />
             </PrivateRoute>
           </Route>
