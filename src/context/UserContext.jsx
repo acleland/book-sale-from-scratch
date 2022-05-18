@@ -25,7 +25,6 @@ export const UserProvider = ({ children }) => {
 
   const logout = async () => {
     const signOut = await signOutUser();
-
     setUser(signOut);
   };
 
