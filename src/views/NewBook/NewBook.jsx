@@ -6,10 +6,24 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useBooks } from '../../hooks/books';
+import { useState } from 'react';
 
 const theme = createTheme();
 
 export default function NewBook() {
+  const { add } = useBooks();
+
+  const [book, setBook] = useState({
+    title: '',
+    author: '',
+    genre: '',
+    description: '',
+    price: '',
+    material: '',
+    image: '',
+  });
+
   const handleSubmit = async (e) => {
     e.preventDefault();
   };
@@ -41,6 +55,8 @@ export default function NewBook() {
                   id="title"
                   label="Title"
                   autoFocus
+                  value={book.title}
+                  onChange={(e) => setBook({ ...book, title: e.target.value })}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>

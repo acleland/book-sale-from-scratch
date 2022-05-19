@@ -1,6 +1,7 @@
 import { useContext, useEffect } from 'react';
+import toast from 'react-hot-toast';
 import { BooksContext } from '../context/BooksContext';
-import { fetchBooks } from '../services/fetch';
+import { createBook, fetchBooks } from '../services/fetch';
 
 export function useBooks() {
   const context = useContext(BooksContext);
@@ -14,14 +15,26 @@ export function useBooks() {
   useEffect(() => {
     const getBooks = async () => {
       try {
-        const payload = await fetchBooks();
+        const bookList = await fetchBooks();
 
-        dispatch({ type: 'get', payload });
+        dispatch({ type: 'get', payload: bookList });
       } catch (err) {
         console.log(err);
       }
     };
     getBooks();
   }, []);
-  return { books };
+
+  const add = async (book) => {
+    try {
+      const newBook = await createBook(book);
+      dispatch({ type: 'create', payload: newBook });
+      toast.success(`Your book "${newBook.title}" has been added`);
+      return newBook;
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  return { books, add };
 }

@@ -6,7 +6,6 @@ export const BooksContext = createContext();
 function reducer(books, action) {
   switch (action.type) {
     case 'create':
-      createBook(action.payload);
       return [action.payload, ...books];
 
     case 'get':
