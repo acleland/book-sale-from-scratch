@@ -14,3 +14,8 @@ export async function createBook(book) {
   const resp = await client.from('books').insert(book).single();
   return checkError(resp);
 }
+
+export async function deleteBook(id) {
+  const resp = await client.from('books').delete(book).match({ id });
+  return checkError(resp);
+}
