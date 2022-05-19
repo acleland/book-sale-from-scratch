@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import { Switch, Redirect } from 'react-router-dom';
 import PrivateRoute from './components/PrivateRoute';
 import { UserProvider } from './context/UserContext';
@@ -21,32 +21,32 @@ export default function App() {
       <CssBaseline />
       <UserProvider>
         <BooksProvider>
-          <Router>
-            <Switch>
-              <Route path="/login">
-                <Auth />
-              </Route>
+          {/* <Router> */}
+          <Switch>
+            <Route path="/login">
+              <Auth />
+            </Route>
 
-              <PrivateRoute path="/books/new">
-                <NewBook />
-              </PrivateRoute>
+            <PrivateRoute path="/books/new">
+              <NewBook />
+            </PrivateRoute>
 
-              <PrivateRoute path="/books/:id">
-                <Header />
-                <BookDetails />
-              </PrivateRoute>
+            <PrivateRoute path="/books/:id">
+              <Header />
+              <BookDetails />
+            </PrivateRoute>
 
-              <PrivateRoute path="/books">
-                <Header />
-                <BookList />
-              </PrivateRoute>
+            <PrivateRoute path="/books">
+              <Header />
+              <BookList />
+            </PrivateRoute>
 
-              <PrivateRoute path="/">
-                <Header />
-                <Redirect to="/books" />
-              </PrivateRoute>
-            </Switch>
-          </Router>
+            <PrivateRoute path="/">
+              <Header />
+              <Redirect to="/books" />
+            </PrivateRoute>
+          </Switch>
+          {/* </Router> */}
         </BooksProvider>
       </UserProvider>
       <CssBaseline />
