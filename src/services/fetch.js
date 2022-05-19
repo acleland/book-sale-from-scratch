@@ -11,6 +11,6 @@ export async function fetchBooksById(id) {
 }
 
 export async function createBook(book) {
-  const resp = await client.from('books').insert(book);
+  const resp = await client.from('books').insert(book).single();
   return checkError(resp);
 }

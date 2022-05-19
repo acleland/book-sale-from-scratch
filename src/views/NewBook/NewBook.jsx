@@ -8,11 +8,14 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useBooks } from '../../hooks/books';
 import { useState } from 'react';
+import toast from 'react-hot-toast';
+import { useHistory } from 'react-router-dom';
 
 const theme = createTheme();
 
 export default function NewBook() {
   const { add } = useBooks();
+  const history = useHistory();
 
   const [book, setBook] = useState({
     title: '',
@@ -26,6 +29,12 @@ export default function NewBook() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    try {
+      await add(book);
+      history.push('/');
+    } catch (error) {
+      toast.error;
+    }
   };
   return (
     <ThemeProvider theme={theme}>
@@ -67,6 +76,8 @@ export default function NewBook() {
                   label="Author"
                   name="author"
                   autoComplete="author"
+                  value={book.author}
+                  onChange={(e) => setBook({ ...book, author: e.target.value })}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -77,6 +88,8 @@ export default function NewBook() {
                   label="Genre"
                   name="Genre"
                   autoComplete="genre"
+                  value={book.genre}
+                  onChange={(e) => setBook({ ...book, genre: e.target.value })}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -87,6 +100,8 @@ export default function NewBook() {
                   label="Price"
                   name="price"
                   autoComplete="price"
+                  value={book.price}
+                  onChange={(e) => setBook({ ...book, price: e.target.value })}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -97,6 +112,10 @@ export default function NewBook() {
                   label="Description"
                   name="description"
                   autoComplete="description"
+                  value={book.description}
+                  onChange={(e) =>
+                    setBook({ ...book, description: e.target.value })
+                  }
                 />
               </Grid>
             </Grid>
