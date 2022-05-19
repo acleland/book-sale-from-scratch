@@ -1,7 +1,6 @@
 import { useContext, useEffect } from 'react';
 import { BooksContext } from '../context/BooksContext';
-
-import { fetchBooks, createBook } from '../services/fetch';
+import { fetchBooks } from '../services/fetch';
 
 export function useBooks() {
   const context = useContext(BooksContext);
@@ -11,20 +10,18 @@ export function useBooks() {
   }
 
   const { books, dispatch } = context;
-  console.log('books in books.js', books);
 
   useEffect(() => {
-    if (books) return;
-
     const getBooks = async () => {
       try {
         const payload = await fetchBooks();
-        console.log('payload', payload);
-        dispatch({ type: 'reset', payload });
+
+        dispatch({ type: 'get', payload });
       } catch (err) {
         console.log(err);
       }
     };
     getBooks();
   }, []);
+  return { books };
 }

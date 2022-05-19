@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import styles from './Auth.css';
+import { toast } from 'react-hot-toast';
 
 import ReactDOM from 'react-dom';
 import Button from '@mui/material/Button';
@@ -32,11 +33,13 @@ export default function Auth() {
       } else {
         await login(email, password);
       }
+
       const url = location.state.origin ? location.state.origin.pathname : '/';
       history.replace(url);
     } catch (error) {
       setError(error.message);
     }
+    toast.success(`Welcome ${email}!`);
   };
 
   return (
