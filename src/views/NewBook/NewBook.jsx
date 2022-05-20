@@ -33,7 +33,7 @@ export default function NewBook() {
       await add(book);
       history.push('/');
     } catch (error) {
-      toast.error;
+      toast.error(error);
     }
   };
   return (

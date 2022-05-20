@@ -1,5 +1,4 @@
 import { createContext, useReducer } from 'react';
-import { createBook } from '../services/fetch';
 
 export const BooksContext = createContext();
 
@@ -12,7 +11,7 @@ function reducer(books, action) {
       return action.payload;
 
     case 'delete':
-      return books.filter((book) => book.id !== payload.id);
+      return books.filter((book) => book.id !== action.payload.id);
 
     default:
       throw Error(`Unknown action: ${action.type}`);

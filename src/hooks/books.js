@@ -36,11 +36,11 @@ export function useBooks() {
     }
   };
 
-  const remove = async () => {
+  const remove = async (id) => {
     try {
-      const remove = await deleteBook();
+      const remove = await deleteBook(id);
       dispatch({ type: 'delete', payload: remove });
-      toast.success(`Your book "${newBook.title}" has been deleted`);
+      toast.success(`Your book "${remove.title}" has been deleted`);
       return remove;
     } catch (err) {
       console.log(err);
