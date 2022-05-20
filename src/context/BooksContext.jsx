@@ -11,6 +11,9 @@ function reducer(books, action) {
     case 'get':
       return action.payload;
 
+    case 'delete':
+      return books.filter((book) => book.id !== payload.id);
+
     default:
       throw Error(`Unknown action: ${action.type}`);
   }

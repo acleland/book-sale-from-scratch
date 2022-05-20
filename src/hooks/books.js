@@ -1,7 +1,7 @@
 import { useContext, useEffect } from 'react';
 import toast from 'react-hot-toast';
 import { BooksContext } from '../context/BooksContext';
-import { createBook, fetchBooks } from '../services/fetch';
+import { createBook, fetchBooks, deleteBook } from '../services/fetch';
 
 export function useBooks() {
   const context = useContext(BooksContext);
@@ -36,5 +36,16 @@ export function useBooks() {
     }
   };
 
-  return { books, add };
+  const remove = async () => {
+    try {
+      const remove = await deleteBook();
+      dispatch({ type: 'delete', payload: remove });
+      toast.success(`Your book "${newBook.title}" has been deleted`);
+      return remove;
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  return { books, add, remove };
 }
