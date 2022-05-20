@@ -19,3 +19,8 @@ export async function deleteBook(id) {
   const resp = await client.from('books').delete(id).match({ id }).single();
   return checkError(resp);
 }
+
+export async function updateBook(book) {
+  const resp = await client.from('books').update(book).match({ id: book.id });
+  return checkError(resp);
+}
