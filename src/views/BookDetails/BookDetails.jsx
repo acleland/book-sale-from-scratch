@@ -4,6 +4,7 @@ import { useBooks } from '../../hooks/books';
 import { fetchBooksById } from '../../services/fetch';
 import toast from 'react-hot-toast';
 import { useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export default function BookDetails() {
   const [book, setBook] = useState({});
@@ -39,6 +40,10 @@ export default function BookDetails() {
       <p>{book.description}</p>
       <p>{book.price}</p>
       <button onClick={handleDelete}>Delete</button>
+      <Link to="/books/:id/edit"><button>Edit</button> </Link>
+      <Link to="/">
+        <p>Back to Home</p>
+      </Link>
     </div>
   );
 }

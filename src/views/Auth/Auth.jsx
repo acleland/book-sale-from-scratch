@@ -88,14 +88,14 @@ export default function Auth() {
           />
         </label>
         {/* <button>{isSignUp ? 'Sign up' : 'Sign in'}</button> */}
+        <Button
+          onClick={handleSubmit}
+          variant="contained"
+          style={{ margin: '20px' }}
+        >
+          {isSignUp ? 'Sign up' : 'Sign in'}
+        </Button>
       </form>
-      <Button
-        onClick={handleSubmit}
-        variant="contained"
-        style={{ margin: '20px' }}
-      >
-        {isSignUp ? 'Sign up' : 'Sign in'}
-      </Button>
     </div>
   );
 }
