@@ -1,23 +1,27 @@
 import React from 'react';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { useBooks } from '../../hooks/books';
+import { useBooks, useBook } from '../../hooks/books';
 import toast from 'react-hot-toast';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import BookForm from '../../components/BookForm';
 
-const theme = createTheme();
-
-export default function NewBook() {
-  const { add } = useBooks();
+export default function EditBook() {
+  const { id } = useParams();
+  const { book, update } = useBook(id);
+  console.log('book ', book);
   const history = useHistory();
 
+  if (!book) {
+    return null;
+  }
   const handleSubmit = async (book) => {
     try {
-      await add(book);
+      await update({ id, ...book });
       history.push('/');
     } catch (error) {
       toast.error(error);
     }
   };
-  return <BookForm handleSubmit={handleSubmit} />;
+  return (
+    <BookForm handleSubmit={handleSubmit} title={'Edit:'} initialState={book} />
+  );
 }

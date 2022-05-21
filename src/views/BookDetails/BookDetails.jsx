@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { useBooks } from '../../hooks/books';
+import { useBooks, useBook } from '../../hooks/books';
 import { fetchBooksById } from '../../services/fetch';
 import toast from 'react-hot-toast';
 import { useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
 export default function BookDetails() {
-  const [book, setBook] = useState({});
   const { id } = useParams();
+  const { book } = useBook(id);
   const { remove } = useBooks();
   const history = useHistory();
+
+  if (!book) return null;
 
   const handleDelete = async (e) => {
     e.preventDefault();
@@ -22,15 +24,6 @@ export default function BookDetails() {
     }
   };
 
-  useEffect(() => {
-    const getBook = async () => {
-      const data = await fetchBooksById(id);
-
-      setBook(data);
-    };
-    getBook();
-  }, [id]);
-
   return (
     <div>
       <h1>Book Details</h1>
@@ -40,7 +33,9 @@ export default function BookDetails() {
       <p>{book.description}</p>
       <p>{book.price}</p>
       <button onClick={handleDelete}>Delete</button>
-      <Link to="/books/:id/edit"><button>Edit</button> </Link>
+      <Link to={`/books/${id}/edit`}>
+        <button>Edit</button>{' '}
+      </Link>
       <Link to="/">
         <p>Back to Home</p>
       </Link>

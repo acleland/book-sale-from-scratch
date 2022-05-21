@@ -1,7 +1,13 @@
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { BooksContext } from '../context/BooksContext';
-import { createBook, fetchBooks, deleteBook } from '../services/fetch';
+import {
+  createBook,
+  fetchBooks,
+  deleteBook,
+  updateBook,
+  fetchBooksById,
+} from '../services/fetch';
 
 export function useBooks() {
   const context = useContext(BooksContext);
@@ -38,14 +44,61 @@ export function useBooks() {
 
   const remove = async (id) => {
     try {
-      const remove = await deleteBook(id);
-      dispatch({ type: 'delete', payload: remove });
-      toast.success(`Your book "${remove.title}" has been deleted`);
-      return remove;
+      const removed = await deleteBook(id);
+      dispatch({ type: 'delete', payload: removed });
+      toast.success(`Your book "${removed.title}" has been deleted`);
+      return removed;
     } catch (err) {
       console.log(err);
     }
   };
 
-  return { books, add, remove };
+  const update = async (book) => {
+    try {
+      console.log('book to update: ', book);
+      const updated = await updateBook(book);
+      console.log('updated', updated);
+      dispatch({ type: 'update', payload: updated });
+      toast.success(`You successfully updated ${book.title}`);
+      return updated;
+    } catch (err) {
+      console.log('update error', err);
+    }
+  };
+  return { books, add, remove, update };
+}
+
+export function useBook(id) {
+  const context = useContext(BooksContext);
+
+  if (context === undefined) {
+    throw new Error('useBooks must be used withing a BooksProvider');
+  }
+
+  const { dispatch } = context;
+
+  const [book, setBook] = useState();
+  useEffect(() => {
+    const getBook = async () => {
+      const data = await fetchBooksById(id);
+
+      setBook(data);
+    };
+    getBook();
+  }, [id]);
+
+  const update = async (book) => {
+    try {
+      console.log('book to update: ', book);
+      const updated = await updateBook(book);
+      console.log('updated', updated);
+      dispatch({ type: 'update', payload: updated });
+      toast.success(`You successfully updated ${book.title}`);
+      return updated;
+    } catch (err) {
+      console.log('update error', err);
+    }
+  };
+
+  return { book, update };
 }

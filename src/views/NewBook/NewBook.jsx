@@ -1,11 +1,8 @@
 import React from 'react';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useBooks } from '../../hooks/books';
 import toast from 'react-hot-toast';
 import { useHistory } from 'react-router-dom';
 import BookForm from '../../components/BookForm';
-
-const theme = createTheme();
 
 export default function NewBook() {
   const { add } = useBooks();
@@ -19,5 +16,7 @@ export default function NewBook() {
       toast.error(error);
     }
   };
-  return <BookForm handleSubmit={handleSubmit} />;
+  return (
+    <BookForm handleSubmit={handleSubmit} title={'Add a new book below:'} />
+  );
 }

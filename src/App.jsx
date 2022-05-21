@@ -32,14 +32,14 @@ export default function App() {
               <NewBook />
             </PrivateRoute>
 
-            <PrivateRoute path="/books/:id">
-              <Header />
-              <BookDetails />
-            </PrivateRoute>
-
             <PrivateRoute path="/books/:id/edit">
               <Header />
               <EditBook />
+            </PrivateRoute>
+
+            <PrivateRoute path="/books/:id">
+              <Header />
+              <BookDetails />
             </PrivateRoute>
 
             <PrivateRoute path="/books">

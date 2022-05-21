@@ -13,6 +13,11 @@ function reducer(books, action) {
     case 'delete':
       return books.filter((book) => book.id !== action.payload.id);
 
+    case 'update':
+      return books.map((book) =>
+        book.id === action.payload.id ? action.payload : book
+      );
+
     default:
       throw Error(`Unknown action: ${action.type}`);
   }

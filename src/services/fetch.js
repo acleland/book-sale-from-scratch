@@ -11,6 +11,7 @@ export async function fetchBooksById(id) {
 }
 
 export async function createBook(book) {
+  console.log('book to create: ', book);
   const resp = await client.from('books').insert(book).single();
   return checkError(resp);
 }
@@ -21,6 +22,10 @@ export async function deleteBook(id) {
 }
 
 export async function updateBook(book) {
-  const resp = await client.from('books').update(book).match({ id: book.id });
+  const resp = await client
+    .from('books')
+    .update(book)
+    .match({ id: book.id })
+    .single();
   return checkError(resp);
 }

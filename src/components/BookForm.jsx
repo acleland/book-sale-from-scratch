@@ -8,9 +8,10 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useState } from 'react';
 
-export default function BookForm({ handleSubmit }) {
-  const theme = createTheme();
-  const [book, setBook] = useState({
+export default function BookForm({
+  title,
+  handleSubmit,
+  initialState = {
     title: '',
     author: '',
     genre: '',
@@ -18,7 +19,10 @@ export default function BookForm({ handleSubmit }) {
     price: '',
     material: '',
     image: '',
-  });
+  },
+}) {
+  const theme = createTheme();
+  const [book, setBook] = useState(initialState);
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -35,7 +39,7 @@ export default function BookForm({ handleSubmit }) {
             alignItems: 'center',
           }}
         >
-          <h2>Add a new book below:</h2>
+          <h2>{title}</h2>
           <Box component="form" noValidate onSubmit={onSubmit} sx={{ mt: 3 }}>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
@@ -47,7 +51,7 @@ export default function BookForm({ handleSubmit }) {
                   id="title"
                   label="Title"
                   autoFocus
-                  value={book.title}
+                  value={book.title || ''}
                   onChange={(e) => setBook({ ...book, title: e.target.value })}
                 />
               </Grid>
@@ -59,7 +63,7 @@ export default function BookForm({ handleSubmit }) {
                   label="Author"
                   name="author"
                   autoComplete="author"
-                  value={book.author}
+                  value={book.author || ''}
                   onChange={(e) => setBook({ ...book, author: e.target.value })}
                 />
               </Grid>
@@ -71,7 +75,7 @@ export default function BookForm({ handleSubmit }) {
                   label="Genre"
                   name="Genre"
                   autoComplete="genre"
-                  value={book.genre}
+                  value={book.genre || ''}
                   onChange={(e) => setBook({ ...book, genre: e.target.value })}
                 />
               </Grid>
@@ -83,7 +87,7 @@ export default function BookForm({ handleSubmit }) {
                   label="Price"
                   name="price"
                   autoComplete="price"
-                  value={book.price}
+                  value={book.price || ''}
                   onChange={(e) => setBook({ ...book, price: e.target.value })}
                 />
               </Grid>
@@ -95,7 +99,7 @@ export default function BookForm({ handleSubmit }) {
                   label="Description"
                   name="description"
                   autoComplete="description"
-                  value={book.description}
+                  value={book.description || ''}
                   onChange={(e) =>
                     setBook({ ...book, description: e.target.value })
                   }
