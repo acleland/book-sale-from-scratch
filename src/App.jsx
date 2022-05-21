@@ -28,26 +28,26 @@ export default function App() {
             <Route path="/login">
               <Auth />
             </Route>
-
             <PrivateRoute path="/books/new">
               <NewBook />
             </PrivateRoute>
-
             <PrivateRoute path="/books/:id/edit">
               <Header />
               <EditBook />
             </PrivateRoute>
-
+            {/* <PrivateRoute path="/books/:id/copy">
+              <Header />
+              {/* <EditBook />   */}{' '}
+            {/* /// add copy view  */}
+            {/* </PrivateRoute> */}
             <PrivateRoute path="/books/:id">
               <Header />
               <BookDetails />
             </PrivateRoute>
-
             <PrivateRoute path="/books">
               <Header />
               <BookList />
             </PrivateRoute>
-
             <PrivateRoute path="/">
               <Header />
               <Redirect to="/books" />

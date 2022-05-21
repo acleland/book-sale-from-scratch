@@ -5,8 +5,8 @@ import { useHistory, useParams } from 'react-router-dom';
 import BookForm from '../../components/BookForm';
 
 export default function EditBook() {
-  const { id } = useParams();
-  const { book, update } = useBook(id);
+  const { id } = useParams(); //use for copy
+  const { book, update } = useBook(id); //use for copy///pull in add from useBooks()
   console.log('book ', book);
   const history = useHistory();
 
@@ -15,7 +15,7 @@ export default function EditBook() {
   }
   const handleSubmit = async (book) => {
     try {
-      await update({ id, ...book });
+      await update({ id, ...book }); //pull in add hook for copy, just pass in book info.
       history.push('/');
     } catch (error) {
       toast.error(error);
