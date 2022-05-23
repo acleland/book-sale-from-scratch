@@ -5,12 +5,14 @@ import { fetchBooksById } from '../../services/fetch';
 import toast from 'react-hot-toast';
 import { useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import { useUser } from '../../context/UserContext';
 
 export default function BookDetails() {
   const { id } = useParams();
   const { book } = useBook(id);
   const { remove } = useBooks();
   const history = useHistory();
+  const { user } = useUser();
 
   if (!book) return null;
 
@@ -32,16 +34,24 @@ export default function BookDetails() {
       <p>{book.genre}</p>
       <p>{book.description}</p>
       <p>{book.price}</p>
-      <button onClick={handleDelete}>Delete</button>
-      <Link to={`/books/${id}/edit`}>
-        <button>Edit</button>
-      </Link>
-      <Link to={`/books/${id}/copy`}>
-        <button>Copy</button>
-      </Link>
+      <p>{`Owned by ${book.owner_email}`}</p>
+
+      {user.id === book.user_id ? (
+        <>
+          <Link to={`/books/${id}/edit`}>
+            <button>Edit</button>
+          </Link>
+          <button onClick={handleDelete}>Delete</button>
+        </>
+      ) : (
+        <Link to={`/books/${id}/copy`}>
+          <button>Copy</button>
+        </Link>
+      )}
+
       <Link to="/">
         <p>Back to Home</p>
       </Link>
- 
+    </div>
   );
 }

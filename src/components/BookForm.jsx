@@ -19,6 +19,7 @@ export default function BookForm({
     price: '',
     material: '',
     image: '',
+    owner_email: '',
   },
 }) {
   const theme = createTheme();
@@ -102,6 +103,20 @@ export default function BookForm({
                   value={book.description || ''}
                   onChange={(e) =>
                     setBook({ ...book, description: e.target.value })
+                  }
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  id="owner"
+                  label="Book Owner"
+                  name="owner"
+                  autoComplete="owner"
+                  value={book.owner_email || ''}
+                  onChange={(e) =>
+                    setBook({ ...book, owner_email: e.target.value })
                   }
                 />
               </Grid>

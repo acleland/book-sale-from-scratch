@@ -14,6 +14,7 @@ export default function BookList() {
               <h3>{book.title}</h3>{' '}
             </Link>
             <p>{book.author}</p>
+            {book.owner_email && <p>{`Book owner: ${book.owner_email}`}</p>}
           </li>
         ))}
       </ul>
