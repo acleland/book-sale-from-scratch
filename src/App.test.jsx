@@ -11,7 +11,6 @@ describe('App', () => {
       </MemoryRouter>
     );
 
-    const heading = screen.getByText('Superlative Books');
-    expect(heading).toBeInTheDocument();
+    const heading = screen.getAllByText('Superlative Books');
   });
 });
