@@ -34,7 +34,10 @@ export default function BookDetails() {
       <p>{book.price}</p>
       <button onClick={handleDelete}>Delete</button>
       <Link to={`/books/${id}/edit`}>
-        <button>Edit</button>{' '}
+        <button>Edit</button>
+      </Link>
+      <Link to={`/books/${id}/copy`}>
+        <button>Copy</button>
       </Link>
       <Link to="/">
         <p>Back to Home</p>

@@ -1,5 +1,5 @@
 import { Route } from 'react-router-dom';
-import { useState } from 'react';
+
 import { Switch, Redirect } from 'react-router-dom';
 import PrivateRoute from './components/PrivateRoute';
 import { UserProvider } from './context/UserContext';
@@ -13,6 +13,7 @@ import EditBook from './views/Editbook/EditBook';
 
 import CssBaseline from '@mui/material/CssBaseline';
 import { BooksProvider } from './context/BooksContext';
+import CopyBook from './views/CopyBook/CopyBook';
 
 export default function App() {
   return (
@@ -23,7 +24,7 @@ export default function App() {
       <CssBaseline />
       <UserProvider>
         <BooksProvider>
-          {/* <Router> */}
+          <Header />
           <Switch>
             <Route path="/login">
               <Auth />
@@ -32,28 +33,21 @@ export default function App() {
               <NewBook />
             </PrivateRoute>
             <PrivateRoute path="/books/:id/edit">
-              <Header />
               <EditBook />
             </PrivateRoute>
-            {/* <PrivateRoute path="/books/:id/copy">
-              <Header />
-              {/* <EditBook />   */}{' '}
-            {/* /// add copy view  */}
-            {/* </PrivateRoute> */}
+            <PrivateRoute path="/books/:id/copy">
+              <CopyBook />
+            </PrivateRoute>
             <PrivateRoute path="/books/:id">
-              <Header />
               <BookDetails />
             </PrivateRoute>
             <PrivateRoute path="/books">
-              <Header />
               <BookList />
             </PrivateRoute>
             <PrivateRoute path="/">
-              <Header />
               <Redirect to="/books" />
             </PrivateRoute>
           </Switch>
-          {/* </Router> */}
         </BooksProvider>
       </UserProvider>
       <CssBaseline />

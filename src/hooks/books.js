@@ -100,5 +100,16 @@ export function useBook(id) {
     }
   };
 
-  return { book, update };
+  const copy = async (book) => {
+    try {
+      const copyBook = await createBook(book);
+      dispatch({ type: 'create', payload: newBook });
+      toast.success(`Your book "${newBook.title}" has been copied`);
+      return copyBook;
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  return { book, update, copy };
 }
