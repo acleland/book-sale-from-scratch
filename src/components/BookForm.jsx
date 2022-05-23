@@ -111,7 +111,7 @@ export default function BookForm({
                   required
                   fullWidth
                   id="owner"
-                  label="Book Owner"
+                  label="Owner email"
                   name="owner"
                   autoComplete="owner"
                   value={book.owner_email || ''}
