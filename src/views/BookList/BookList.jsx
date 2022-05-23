@@ -1,11 +1,12 @@
 import { Link } from 'react-router-dom';
 import { useBooks } from '../../hooks/books';
+import styles from '../../styles.css';
 
 export default function BookList() {
   const { books } = useBooks();
 
   return (
-    <div>
+    <div className={styles.bookList}>
       <h2>Superlative Books for Sale</h2>
       <ul>
         {books.map((book) => (
