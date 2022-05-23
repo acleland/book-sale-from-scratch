@@ -42,6 +42,6 @@ export default function BookDetails() {
       <Link to="/">
         <p>Back to Home</p>
       </Link>
-    </div>
+ 
   );
 }

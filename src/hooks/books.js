@@ -53,19 +53,19 @@ export function useBooks() {
     }
   };
 
-  const update = async (book) => {
-    try {
-      console.log('book to update: ', book);
-      const updated = await updateBook(book);
-      console.log('updated', updated);
-      dispatch({ type: 'update', payload: updated });
-      toast.success(`You successfully updated ${book.title}`);
-      return updated;
-    } catch (err) {
-      console.log('update error', err);
-    }
-  };
-  return { books, add, remove, update };
+  // const update = async (book) => {
+  //   try {
+  //     console.log('book to update: ', book);
+  //     const updated = await updateBook(book);
+  //     console.log('updated', updated);
+  //     dispatch({ type: 'update', payload: updated });
+  //     toast.success(`You successfully updated ${book.title}`);
+  //     return updated;
+  //   } catch (err) {
+  //     console.log('update error', err);
+  //   }
+  // };
+  return { books, add, remove };
 }
 
 export function useBook(id) {
@@ -102,7 +102,13 @@ export function useBook(id) {
 
   const copy = async (book) => {
     try {
-      const copyBook = await createBook(book);
+      const copyBook = await createBook({
+        title: book.title,
+        author: book.author,
+        genre: book.genre,
+        price: book.price,
+        description: book.description,
+      });
       dispatch({ type: 'create', payload: newBook });
       toast.success(`Your book "${newBook.title}" has been copied`);
       return copyBook;
