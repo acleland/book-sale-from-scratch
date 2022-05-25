@@ -1,0 +1,32 @@
+.headerFont {
+  font-size: larger;
+  font-weight: bolder;
+  font-family: 'Shadows Into Light', cursive;
+  margin: 25px;
+}
+
+.bookList {
+  font-family: 'Indie Flower', cursive;
+  font-size: larger;
+  font-weight: bolder;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0px;
+  align-items: center;
+}
+
+.header span {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.bookDetails {
+  font-family: 'Indie Flower', cursive;
+  font-size: large;
+  margin-left: 40%;
+}
