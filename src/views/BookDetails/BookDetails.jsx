@@ -6,6 +6,7 @@ import toast from 'react-hot-toast';
 import { useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { useUser } from '../../context/UserContext';
+import styles from '../../styles.css';
 
 export default function BookDetails() {
   const { id } = useParams();
@@ -27,7 +28,7 @@ export default function BookDetails() {
   };
 
   return (
-    <div>
+    <div className={styles.bookDetails}>
       <h1>Book Details</h1>
       <h3>{book.title}</h3>
       <p>{book.author}</p>

@@ -148,62 +148,6 @@ export default function Auth() {
           </Box>
         </Container>
       </ThemeProvider>
-
-      <div>
-        <div className={styles['auth-page']}>
-          {/* <div className={styles['auth-menu']}>
-            <span
-              className={`${styles['auth-toggle']} ${
-                isSignUp ? '' : styles.selected
-              }`}
-              onClick={toggleAuth}
-            >
-              Sign In
-            </span>
-            <span
-              className={`${styles['auth-toggle']} ${
-                isSignUp ? styles.selected : ''
-              }`}
-              onClick={toggleAuth}
-            >
-              Sign Up
-            </span>
-          </div> */}
-
-          {/* <form className={styles['auth']} onSubmit={handleSubmit}>
-            <label htmlFor="email">
-              Email
-              <input
-                type="email"
-                name="email"
-                value={email}
-                onChange={(e) => {
-                  setEmail(e.target.value);
-                }}
-              />
-            </label>
-            <label htmlFor="password">
-              Password
-              <input
-                type="password"
-                name="password"
-                value={password}
-                onChange={(e) => {
-                  setPassword(e.target.value);
-                }}
-              />
-            </label> */}
-          {/* <button>{isSignUp ? 'Sign up' : 'Sign in'}</button> */}
-          {/* <Button
-              onClick={handleSubmit}
-              variant="contained"
-              style={{ margin: '20px' }}
-            >
-              {isSignUp ? 'Sign up' : 'Sign in'}
-            </Button> */}
-          {/* </form> */}
-        </div>
-      </div>
     </>
   );
 }
